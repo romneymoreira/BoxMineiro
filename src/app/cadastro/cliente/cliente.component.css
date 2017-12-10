@@ -1,0 +1,7 @@
+label.required:after 
+{
+    content: "*";
+    font-weight: bold;
+    color: red;
+    margin-left: 3px;
+}

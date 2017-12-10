@@ -36,6 +36,34 @@
                     Dashboard Beta
                 </a>
             </li>
+            <li class="cat__menu-left__item cat__menu-left__submenu" [routerLinkActive]="['cat__menu-left__item--active']">
+                <a href="javascript: void(0);">
+                    <span class="cat__menu-left__icon icmn-table"></span>
+                    Financeiro
+                </a>
+                <ul class="cat__menu-left__list">
+                    <li class="cat__menu-left__item" [routerLinkActive]="['cat__menu-left__item--active']">
+                        <a [routerLink]="['financeiro/meio-pagamento/meio-pagamento']">
+                            <span class="cat__menu-left__icon">MP</span>
+                            Meio de Pagamento
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="cat__menu-left__item cat__menu-left__submenu" [routerLinkActive]="['cat__menu-left__item--active']">
+                <a href="javascript: void(0);">
+                    <span class="cat__menu-left__icon icmn-table"></span>
+                    Cadastro
+                </a>
+                <ul class="cat__menu-left__list">
+                    <li class="cat__menu-left__item" [routerLinkActive]="['cat__menu-left__item--active']">
+                        <a [routerLink]="['cadastro/cliente/cliente']">
+                            <span class="cat__menu-left__icon">MP</span>
+                            Cliente
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="cat__menu-left__divider"><!-- --></li>
             <li class="cat__menu-left__item cat__menu-left__submenu" [routerLinkActive]="['cat__menu-left__item--active']">
                 <a href="javascript: void(0);">
@@ -341,22 +369,6 @@
                     </li>
                 </ul>
             </li>
-
-            <li class="cat__menu-left__item cat__menu-left__submenu" [routerLinkActive]="['cat__menu-left__item--active']">
-                <a href="javascript: void(0);">
-                    <span class="cat__menu-left__icon icmn-table"></span>
-                    Financeiro
-                </a>
-                <ul class="cat__menu-left__list">
-                    <li class="cat__menu-left__item" [routerLinkActive]="['cat__menu-left__item--active']">
-                        <a [routerLink]="['financeiro/meio-pagamento/meio-pagamento']">
-                            <span class="cat__menu-left__icon">MP</span>
-                            Meio de Pagamento
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
 
             <li class="cat__menu-left__item cat__menu-left__submenu" [routerLinkActive]="['cat__menu-left__item--active']">
                 <a href="javascript: void(0);">

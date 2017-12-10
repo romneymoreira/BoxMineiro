@@ -2,6 +2,11 @@
   "name": "clean-ui",
   "version": "2.1.0",
   "license": "MIT",
+  "mac": "<keyboard shortcut for mac>",
+  "linux": "<keyboard shortcut for linux",
+  "win": "<keyboard shortcut for windows",
+  "key": "<default keyboard shortcut>",
+  "command": "<name of the command in VS Code",
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
@@ -20,10 +25,12 @@
     "@angular/platform-browser": "latest",
     "@angular/platform-browser-dynamic": "latest",
     "@angular/router": "latest",
+    "@ng-bootstrap/ng-bootstrap": "latest",
     "core-js": "latest",
+    "lodash": "^4.17.4",
+    "ng2-input-mask": "0.0.7",
     "rxjs": "latest",
-    "zone.js": "latest",
-    "@ng-bootstrap/ng-bootstrap": "latest"
+    "zone.js": "latest"
   },
   "devDependencies": {
     "@angular/cli": "latest",

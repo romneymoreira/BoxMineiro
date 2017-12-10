@@ -1,0 +1,234 @@
+<!-- START: tables/datatables -->
+<section class="card">
+    <div class="card-header">
+        <span class="cat__core__title">
+          <strong>Clientes</strong>
+      </span>
+    </div>
+    <div class="card-block">
+        <div class="row">
+            <div class="col-lg-12">
+                <button class="btn btn-primary mr-2 mb-2 pull-rigth" type="button" (click)="abrir('', openmodal)"><i class="fa fa-plus"> Novo</i></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="mb-5">
+                    <table class="table table-hover nowrap" id="example1" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="width:40%">Nome</th>
+                                <th style="width:20%">CPF/CNPJ</th>
+                                <th style="width:20%">Tipo</th>
+                                <th style="width:20%">Editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of clientes">
+                                <td>{{item.Nome}}</td>
+                                <td>{{item.Tipo}}</td>
+                                <td>{{item.CpfCnpj}}</td>
+                                <td>
+                                    <button class="btn btn-success" type="button" (click)="abrir(item, openmodal)">
+                            <i aria-hidden="true" class="icmn-pencil"></i>
+                            Editar
+                            </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END: tables/datatables -->
+
+<ng-template #openmodal>
+    <div class="modal-content">
+     <form #formulario="ngForm" (ngSubmit)="onSubmit(formulario)">
+        <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">{{title}}</h5>
+            <button aria-label="Close" (click)="fechar()" class="close" data-dismiss="modal" type="button">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+           
+                <div class="bordered alert alert-danger" *ngIf="error">
+                    <p class="pull-left">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        Preencha os campos obrigatórios!
+                    </p>
+                     <div class="clearfix"></div>
+                </div>
+                <div class="nav-tabs-horizontal">
+                    <ul class="nav nav-tabs mb-4" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-target="#cliente" data-toggle="tab" href="javascript: void(0);" role="tab">
+                                <i class="icmn-home"></i> Dados do cliente
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-target="#endereco" data-toggle="tab" href="javascript: void(0);" role="tab">
+                                <i class="icmn-users"></i> Dados do endereço
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="cliente" role="tabcard">
+
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="form-group" [class.has-danger]="!nome.valid && nome.touched">
+                                        <label for="Nome" class="control-label required">Nome</label>
+                                        <input class="form-control bg-light" data-validation-message="Nome é obrigatório!" #nome="ngModel" name="Nome" [(ngModel)]="cliente.Nome" type="text" required>
+                                        <div class="form-control-error" data-error-list="" *ngIf="!nome.valid && nome.touched">
+                                            <ul>
+                                                <li>Nome é obrigatório!</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="sexo" class="control-label">Sexo</label>
+                                        <select class="form-control m-b" name="sexo" #sexo="ngModel" [(ngModel)]="sexoSelecionado">
+                                                    <option *ngFor="let sexo of sexos" [ngValue]="sexo.Key"> {{sexo.Value}} </option>
+                                                </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group" [class.has-danger]="!telefone.valid && telefone.touched">
+                                        <label for="telefone" class="control-label required">Telefone</label>
+                                        <input class="form-control bg-light" #telefone="ngModel" name="telefone" [(ngModel)]="cliente.Telefone" type="text" required>
+                                        <div class="form-control-error" data-error-list="" *ngIf="!telefone.valid && telefone.touched">
+                                            <ul>
+                                                <li>Telefone é obrigatório!</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group" [class.has-danger]="!email.valid && email.touched">
+                                        <label for="email" class="control-label required">E-mail</label>
+                                        <input class="form-control bg-light" #email="ngModel" name="email" [(ngModel)]="cliente.Email" type="email" required>
+                                        <div class="form-control-error" data-error-list="" *ngIf="!email.valid && email.touched">
+                                            <ul>
+                                                <li>E-mail é obrigatório!</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <label for="Mae" class="control-label">Mãe</label>
+                                        <input class="form-control bg-light" name="Mae" [(ngModel)]="cliente.Mae" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="DtNascimento" class="control-label">Data Nascimento</label>
+                                        <input class="form-control bg-light" name="DtNascimento" [(ngModel)]="cliente.DataNascimento" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <label for="Pai" class="control-label">Pai</label>
+                                        <input class="form-control bg-light" name="Pai" [(ngModel)]="cliente.Pai" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="CPF" class="control-label">CPF</label>
+                                        <input class="form-control bg-light" name="CPF" [(ngModel)]="cliente.CPF" ui-br-cpf-mask type="text">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="obs" class="control-label">Observação</label>
+                                        <textarea name="obs" [(ngModel)]="cliente.Observacao" class="form-control bg-light" style="width:100%;" rows="5"></textarea>
+                                        <span> Caracteres</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="endereco" role="tabcard">
+                            <div ngModelGroup="endereco">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="cep" class="control-label required">Cep</label>
+                                            <input class="form-control bg-light" name="cep" (blur)="consultaCep($event.target.value, formulario)" #cep="ngModel" [(ngModel)]="CEP" type="text" ui-br-cep-mask required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="logradouro" class="control-label required">Logradouro</label>
+                                            <input class="form-control bg-light" name="logradouro" #logradouro="ngModel" [(ngModel)]="Logradouro" type="text" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="numero" class="control-label required">Número</label>
+                                            <input class="form-control bg-light" name="numero" #numero="ngModel" [(ngModel)]="Numero" type="text" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="bairro" class="control-label required">Bairro</label>
+                                            <input class="form-control bg-light" name="bairro" #bairro="ngModel" [(ngModel)]="Bairro" type="text" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="estado" class="control-label required">Estado</label>
+                                            <select class="form-control m-b" name="estado" #estado="ngModel" [(ngModel)]="Estado" required (ngModelChange)="cidadesBySigla(Estado)" (change)="cidadesBySigla($event.target.value)">
+                                                        <option *ngFor="let estado of estados" [selected]="endereco.estado == estado.Sigla" [value]="estado.Sigla"> {{estado.Nome}} </option>
+                                                    </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="cidade" class="control-label required">Cidade</label>
+                                            <select class="form-control m-b" name="cidade" #cidade="ngModel" required [(ngModel)]="Cidade">
+                                                        <option *ngFor="let cidade of cidades" [selected]="endereco.cidade == cidade.Nome" [ngValue]="cidade.IdCidade"> {{cidade.Nome}} </option>
+                                                    </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Complemento" class="control-label">Complemento</label>
+                                            <input class="form-control bg-light" name="Complemento" [(ngModel)]="Complemento" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Referencia" class="control-label">Referência</label>
+                                            <input class="form-control bg-light" name="Referencia" [(ngModel)]="Referencia" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  
+          
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" ng (click)="salvar(formulario)" type="button">Salvar</button>
+            <button class="btn" data-dismiss="modal" (click)="fechar()" type="button">Fechar</button>
+        </div>
+          </form>
+    </div>
+</ng-template>

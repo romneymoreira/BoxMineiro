@@ -14,7 +14,9 @@ import { MenuRightComponent } from './components/menu-right/menu-right.component
 import { FooterComponent } from './components/footer/footer.component';
 
 import { StructureModule } from './structure/structure.module';
+import {CadastroModule}from './cadastro/cadastro.module';
 import {FinanceiroModule}from './financeiro/financeiro.module';
+import { NgElseDirective } from './diretivas/ng-else.directive';
 
 
 declare var NProgress: any;
@@ -25,7 +27,8 @@ declare var NProgress: any;
         TopBarComponent,
         MenuLeftComponent,
         MenuRightComponent,
-        FooterComponent
+        FooterComponent,
+        NgElseDirective,
     ],
     imports: [
         BrowserModule,
@@ -34,7 +37,7 @@ declare var NProgress: any;
         RouterModule,
         StructureModule,
         ReactiveFormsModule,
-        FinanceiroModule,
+        CadastroModule,
         FinanceiroModule,
         NgbModule.forRoot(),
         routing
